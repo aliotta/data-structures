@@ -26,7 +26,6 @@ var LinkedList = function(){
       if (target === currentNode.value) {
         return true;
       }
-      debugger;
       currentNode = currentNode.next;
     }
     return false;
@@ -46,4 +45,8 @@ var Node = function(value){
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ Contstant time O(1) for .addToTail and .removeHead.  O(n) time for .contains 
+ it must proceed through the list <= n times.
  */
+
+ //Binding Pattern: functional
