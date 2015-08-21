@@ -7,7 +7,7 @@ HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
   var tuple = [k,v];
   var flag = false;
-  if (!(this._storage[i])){
+  if (!this._storage[i]){
     this._storage[i] = [];
   }
   var bucket = this._storage[i];
@@ -18,7 +18,7 @@ HashTable.prototype.insert = function(k, v){
       //TODO return value
     } 
   }
-  if(!(flag)){
+  if(!flag){
     bucket.push(tuple);
   }
 };
@@ -26,7 +26,7 @@ HashTable.prototype.insert = function(k, v){
 HashTable.prototype.retrieve = function(k){
   var i = getIndexBelowMaxForKey(k, this._limit);
   var bucket = this._storage[i];
-  if (!(bucket)){
+  if (!bucket){
     return null;
   } else if (bucket.length > 0){
     for(var j = 0; j < bucket.length; j++){
@@ -34,10 +34,8 @@ HashTable.prototype.retrieve = function(k){
         return bucket[j][1];
       }
     }
-    return null;
-  } else {
-    return null;
   }
+  return null;
 };
 
 HashTable.prototype.remove = function(k){
