@@ -1,34 +1,42 @@
 var Tree = function(value){
   var newTree = {};
+  //Sets value property of new Tree node 
   newTree.value = value;
-
-  // your code here
-  newTree.children = [];  // fix me
+  //Create an array to store the node's child nodes
+  newTree.children = []; 
+  //Adds treeMethods as properties of newTree
   _.extend(newTree,treeMethods);
   return newTree;
 };
 
-
-  // your code here
-  //newTree.children = null;  // fix me
-
-
+//Storage bin for methods
 var treeMethods = {};
 
+//Add a child node to the current node
 treeMethods.addChild = function(value){
+  //Append new instance of Tree with input value
+  //to end of nodes children array.
   this.children.push(new Tree(value));
 };
 
+//Check if the target value exists anywhere in the
+//selected tree node.  
 treeMethods.contains = function(target){
-  if ( this.value === target){
+  //If found return true
+  if (this.value === target){
     return true;
-  } else if (this.children.length > 0){
+  }
+  //Otherwise, if the node has children, run contains
+  //on each of the child nodes.   
+  else if (this.children.length > 0){
     for (var i =0; i < this.children.length; i++){
+      //If found return true
       if (this.children[i].contains(target)) {
         return true;
       }
     }
   } 
+  //End of tree has been reached, return false.
   return false;
 };
 

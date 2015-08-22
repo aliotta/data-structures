@@ -62,6 +62,15 @@ HashTable.prototype.remove = function(k){
   }
 };
 
+HashTable.prototype.resize = function(size) {
+  if (size > this._limit * 0.75) {
+    //resize and restructure
+  } else if (size < this._limit * 0.25) {
+    //resize and restructure
+  }
+}
+
+
 
 
 /*
