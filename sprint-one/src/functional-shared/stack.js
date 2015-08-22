@@ -1,31 +1,37 @@
 var Stack = function() {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
   var someInstance = {};
+  //Use an object with numeric keys to store values
   someInstance.storage = {};
+  //Use counter to track current size of the stack
+  someInstance.stackSize = 0;
+  //Add methods in stackMethods to someInstance. Functional
+  //-shared instantiation.  stackMethods are the shared methods.
   _.extend(someInstance, stackMethods);
   return someInstance;
 };
 
 var stackMethods = {
+  //Add items to the top of the stack
   push : function(value){
-    var length = this.size(this.storage);
-    this.storage[length] = value; 
+    this.storage[this.stackSize] = value; 
+    //Increment stackSize
+    this.stackSize++;
   },
+  //Remove items from the top of the stack
   pop : function(){
-    var length = this.size(this.storage);
-    var tempStore = this.storage[length -1];
-    delete this.storage[length -1];
+    //Save value at top of stack to be returned later
+    var tempStore = this.storage[this.stackSize -1];
+    //delete for the sake of system memory
+    delete this.storage[this.stackSize -1];
+    //Decrement stack size if it is not 0
+    if (this.stackSize !== 0) {
+      this.stackSize--;
+    }
     return tempStore;
   },
+  //Get the current size of the stack
   size : function (){
-    var length = 0;
-    for (var key in this.storage){
-      if(this.storage.hasOwnProperty(key)){
-        length++;
-      }
-    }
-    return length;
+    return this.stackSize;
   }
 };
 

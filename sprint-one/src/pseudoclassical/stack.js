@@ -1,27 +1,30 @@
 var Stack = function() {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
+  //Pseudoclassical instantiation
+  //Create object to store nodes
   this.storage = {};
+  //Create counter to track current stack size.
+  this.stackSize = 0;
 };
-
+//Add items to the top of the stack
 Stack.prototype.push = function(value){
-  var length = this.size(this.storage);
-  this.storage[length] = value;
+  this.storage[this.stackSize] = value;
+  //Increment stackSize.
+  this.stackSize++;
 }
+//Remove items from the top of the stack
 Stack.prototype.pop = function(){
-  var length = this.size(this.storage);
-  var tempStore = this.storage[length-1];
-  delete this.storage[length-1];
+  //Save value at top of the stack to be returned later
+  var tempStore = this.storage[this.stackSize-1];
+  delete this.storage[this.stackSize-1];
+  //Decrement stackSize if it is not 0
+  if (this.stackSize !== 0) {
+    this.stackSize--;
+  }
   return tempStore;
 }
+//Get current size of the stack
 Stack.prototype.size = function(){
-  var length = 0;
-  for (var key in this.storage){
-    if ( this.storage.hasOwnProperty(key)){
-      length++;
-    }
-  }
-  return length;
+  return this.stackSize;
 }
 
 
